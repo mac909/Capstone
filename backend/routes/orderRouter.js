@@ -9,7 +9,13 @@ const {
 	deleteOrder,
 } = require("../controllers/orderController");
 
-router.route("/").get(getOrders).post(createOrder);
-router.route("/:id").get(getOrderById).put(updateOrder).delete(deleteOrder);
+const { protect } = require("../middleware/authMiddleware");
+
+router.route("/").get(protect, getOrders).post(protect, createOrder);
+router
+	.route("/:id")
+	.get(protect, getOrderById)
+	.put(protect, updateOrder)
+	.delete(protect, deleteOrder);
 
 module.exports = router;
