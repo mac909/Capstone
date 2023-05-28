@@ -7,13 +7,8 @@ const User = require("../models/userModel");
 // @route   GET /api/orders
 // @access  Private/Admin
 const getOrders = asyncHandler(async (req, res, next) => {
-	if (!req.body.text) {
-		res.status(400);
-		next(new Error("Bad request"));
-	} else {
-		const orders = await Order.find({ user: req.user._id });
-		res.status(200).send(orders);
-	}
+	const orders = await Order.find({}).populate("user", "id name");
+	res.status(200).send(orders);
 });
 
 // @desc    Get order by id
