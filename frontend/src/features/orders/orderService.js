@@ -26,9 +26,22 @@ const getOrders = async (token) => {
 	return response.data;
 };
 
+// Delete an order
+const deleteOrder = async (orderId, token) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+
+	const response = await axios.delete(API_URL + orderId, config);
+	return response.data;
+};
+
 const orderService = {
 	createOrder,
 	getOrders,
+	deleteOrder,
 };
 
 export default orderService;

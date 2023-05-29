@@ -28,11 +28,11 @@ const Login = () => {
 			dispatch(reset());
 		}
 		if (isSuccess || user) {
-			toast.success(message);
+			toast.success("Login successful");
 			navigate("/");
 			dispatch(reset());
 		}
-	}, [user, isError, isSuccess, message, navigate, dispatch]);
+	}, [user, dispatch]);
 
 	const onChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -73,7 +73,7 @@ const Login = () => {
 					</div>
 					<div className="form-group">
 						<input
-							type="text"
+							type="password"
 							className="form-control"
 							id="password"
 							name="password"
