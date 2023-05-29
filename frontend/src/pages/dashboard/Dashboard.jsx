@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import OrderForm from "../../components/orderForm/OrderForm";
 import Spinner from "../../components/spinner/Spinner";
 import { getOrders, reset } from "../../features/orders/orderSlice";
+import OrderItem from "../../components/orderItem/OrderItem";
 
 const Dashboard = () => {
 	const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const Dashboard = () => {
 	);
 
 	useEffect(() => {
-		dispatch(getOrders("open"));
+		dispatch(getOrders());
 
 		if (!user) {
 			navigate("/login");
@@ -25,7 +26,7 @@ const Dashboard = () => {
 		return () => {
 			dispatch(reset());
 		};
-	}, [dispatch]);
+	}, [navigate, isError, message, dispatch]);
 
 	if (isLoading) {
 		return <Spinner />;
@@ -39,6 +40,17 @@ const Dashboard = () => {
 			</section>
 
 			<OrderForm />
+			<section className="content">
+				{orders.length > 0 ? (
+					<div className="goals">
+						{orders.map((order) => (
+							<OrderItem key={order._id} order={order} />
+						))}
+					</div>
+				) : (
+					<h3>No orders</h3>
+				)}
+			</section>
 		</>
 	);
 };

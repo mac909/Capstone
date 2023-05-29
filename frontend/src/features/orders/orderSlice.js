@@ -7,6 +7,7 @@ const initialState = {
 	isSuccess: false,
 	isLoading: false,
 	message: "",
+	refresh: false,
 };
 
 export const orderSlice = createSlice({
@@ -14,6 +15,9 @@ export const orderSlice = createSlice({
 	initialState,
 	reducers: {
 		reset: (state) => initialState,
+		setRefresh: (state, action) => {
+			state.refresh = action.payload;
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -39,6 +43,21 @@ export const orderSlice = createSlice({
 				state.orders = action.payload;
 			})
 			.addCase(getOrders.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			})
+			.addCase(deleteOrder.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(deleteOrder.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.orders = state.orders.filter(
+					(order) => order._id !== action.payload._id
+				);
+			})
+			.addCase(deleteOrder.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = true;
 				state.message = action.payload;
@@ -72,6 +91,24 @@ export const getOrders = createAsyncThunk(
 		try {
 			const token = thunkAPI.getState().auth.user.token;
 			return await orderService.getOrders(token);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
+export const deleteOrder = createAsyncThunk(
+	"orders/delete",
+	async (orderId, thunkAPI) => {
+		try {
+			const token = thunkAPI.getState().auth.user.token;
+			return await orderService.deleteOrder(orderId, token);
 		} catch (error) {
 			const message =
 				(error.response &&

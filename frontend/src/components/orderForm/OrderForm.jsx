@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createOrder } from "../../features/orders/orderSlice";
+import { toast } from "react-toastify";
 
 const OrderForm = () => {
 	const [text, setText] = useState("");
@@ -15,19 +16,20 @@ const OrderForm = () => {
 
 		dispatch(createOrder({ text }));
 		setText("");
+		toast.success("Order created");
 	};
 	return (
 		<section className="form">
 			<form onSubmit={onSubmit}>
 				<div className="form-group">
-					<label htmlFor="text">Goal</label>
+					<label htmlFor="text">Order</label>
 					<input
 						type="text"
 						className="form-control"
 						id="text"
 						value={text}
 						onChange={(e) => setText(e.target.value)}
-						placeholder="Enter goal"
+						placeholder="Enter order"
 					/>
 				</div>
 				<div className="form-group">
