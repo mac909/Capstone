@@ -19,7 +19,7 @@ const Header = () => {
 		<>
 			<header className="header">
 				<div className="logo">
-					<Link to="/">OrderSetter</Link>
+					<Link to="/">Job Traveler</Link>
 				</div>
 				<ul className="links">
 					{user ? (

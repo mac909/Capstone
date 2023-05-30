@@ -1,7 +1,6 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { createOrder } from "../../features/orders/orderSlice";
 import { toast } from "react-toastify";
 
@@ -9,7 +8,6 @@ const OrderForm = () => {
 	const [text, setText] = useState("");
 
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
 	const onSubmit = (e) => {
 		e.preventDefault();
