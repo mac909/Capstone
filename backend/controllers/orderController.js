@@ -55,6 +55,8 @@ const updateOrder = asyncHandler(async (req, res) => {
 	const updateOrder = await Order.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
 	});
+
+	res.status(200).send("Order updated");
 });
 
 // @desc    Delete order
