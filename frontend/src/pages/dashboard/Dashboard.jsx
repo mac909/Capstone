@@ -6,6 +6,8 @@ import OrderForm from "../../components/orderForm/OrderForm";
 import Spinner from "../../components/spinner/Spinner";
 import { getOrders, reset } from "../../features/orders/orderSlice";
 import OrderItem from "../../components/orderItem/OrderItem";
+import JobItem from "../../components/jobItem/JobItem";
+import { getJobs, resetJob } from "../../features/jobs/jobSlice";
 
 const Dashboard = () => {
 	const dispatch = useDispatch();
@@ -17,8 +19,11 @@ const Dashboard = () => {
 		(state) => state.orders
 	);
 
+	const { jobs } = useSelector((state) => state.jobs);
+
 	useEffect(() => {
 		dispatch(getOrders());
+		dispatch(getJobs());
 
 		if (!user) {
 			navigate("/login");
@@ -48,7 +53,21 @@ const Dashboard = () => {
 						))}
 					</div>
 				) : (
-					<h3>No orders</h3>
+					<h3>No tasks</h3>
+				)}
+			</section>
+			<section className="content">
+				<h1>Jobs</h1>
+				{jobs.length > 0 ? (
+					<table>
+						<tbody>
+							{jobs.map((job) => (
+								<JobItem key={job._id} job={job} />
+							))}
+						</tbody>
+					</table>
+				) : (
+					<h3>No jobs</h3>
 				)}
 			</section>
 		</>
