@@ -28,6 +28,11 @@ li {
   line-height: 2.2;
 }
 
+td{
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
 h1,
 h2,
 h3 {
