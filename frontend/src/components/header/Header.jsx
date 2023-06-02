@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaUser, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import { FaUser, FaSignInAlt, FaSignOutAlt, FaFile } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../../features/auth/authSlice";
 
@@ -24,6 +24,12 @@ const Header = () => {
 				<ul className="links">
 					{user ? (
 						<>
+							<li>
+								<Link to="/job" className="btn">
+									<FaFile /> New Order
+								</Link>
+							</li>
+
 							<li>
 								<button className="btn" onClick={onLogout}>
 									<FaSignOutAlt /> Logout
