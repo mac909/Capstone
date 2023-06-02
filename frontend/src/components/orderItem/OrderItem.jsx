@@ -11,7 +11,7 @@ const OrderItem = ({ order }) => {
 		dispatch(deleteOrder(order._id))
 			.then(() => {
 				dispatch(getOrders());
-				toast.success("Order deleted");
+				toast.success("Task deleted");
 			})
 			.catch((err) => {
 				console.log(err);

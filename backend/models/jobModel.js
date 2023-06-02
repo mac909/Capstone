@@ -11,7 +11,7 @@ const jobSchema = mongoose.Schema(
 			required: [true, "Please enter job description"],
 		},
 		dueDate: {
-			type: Date,
+			type: String,
 			required: [true, "Please enter due date"],
 		},
 		poNumber: {
@@ -28,7 +28,6 @@ const jobSchema = mongoose.Schema(
 		},
 		operations: {
 			type: Array,
-			required: [true, "Please enter operations"],
 		},
 		status: {
 			type: String,
@@ -36,7 +35,6 @@ const jobSchema = mongoose.Schema(
 		},
 		notes: {
 			type: String,
-			required: [true, "Please enter notes"],
 		},
 	},
 	{

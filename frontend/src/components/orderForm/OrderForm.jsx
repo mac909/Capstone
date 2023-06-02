@@ -14,20 +14,20 @@ const OrderForm = () => {
 
 		dispatch(createOrder({ text }));
 		setText("");
-		toast.success("Order created");
+		toast.success("Task created");
 	};
 	return (
 		<section className="form">
 			<form onSubmit={onSubmit}>
 				<div className="form-group">
-					<label htmlFor="text">Order</label>
+					<label htmlFor="text">Task</label>
 					<input
 						type="text"
 						className="form-control"
 						id="text"
 						value={text}
 						onChange={(e) => setText(e.target.value)}
-						placeholder="Enter order"
+						placeholder="Enter task"
 					/>
 				</div>
 				<div className="form-group">
