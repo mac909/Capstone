@@ -7,8 +7,11 @@ import Spinner from "../../components/spinner/Spinner";
 import { getOrders, reset } from "../../features/orders/orderSlice";
 import OrderItem from "../../components/orderItem/OrderItem";
 import JobItem from "../../components/jobItem/JobItem";
-import { getJobs, resetJob } from "../../features/jobs/jobSlice";
+import { deleteJob, getJobs, resetJob } from "../../features/jobs/jobSlice";
 import Error from "../../components/errorPage/Error";
+import { Link } from "react-router-dom";
+import { FaWindowClose } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
 	const dispatch = useDispatch();
@@ -28,6 +31,13 @@ const Dashboard = () => {
 	);
 
 	const { jobs } = useSelector((state) => state.jobs);
+
+	const handleDelete = (id) => {
+		dispatch(deleteJob(id)).then(() => {
+			dispatch(getJobs());
+		});
+		toast.success("Job deleted successfully");
+	};
 
 	useEffect(() => {
 		dispatch(getOrders());
@@ -124,6 +134,23 @@ const Dashboard = () => {
 										</td>
 										<td className="px-4 py-2">
 											{job.status}
+										</td>
+										<td className="px-4 py-2">
+											<button
+												onClick={() =>
+													navigate(`/job/${job._id}`)
+												}
+												className="text-blue-500 hover:underline"
+											>
+												View
+											</button>
+										</td>
+										<td>
+											<FaWindowClose
+												onClick={() =>
+													handleDelete(job._id)
+												}
+											/>
 										</td>
 									</tr>
 								))}

@@ -49,6 +49,7 @@ const updateJob = async (id, job, token) => {
 	};
 
 	const response = await axios.put(`${API_URL}/${id}`, job, config);
+	console.log("Yes");
 	return response.data;
 };
 
