@@ -55,7 +55,7 @@ const Login = () => {
 	return (
 		<>
 			<section className="heading">
-				<FaSignInAlt /> Sign In
+				<span>Sign In</span>
 				<p>Please enter your email and password</p>
 			</section>
 			<section className="form" onSubmit={onSubmit}>
