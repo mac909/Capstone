@@ -28,15 +28,19 @@ const getJobById = asyncHandler(async (req, res) => {
 // @route   DELETE /api/jobs/:id
 // @access  Private/Admin
 const deleteJob = asyncHandler(async (req, res) => {
-	const job = await Job.findById(req.params.id);
+	const jobId = req.params.id;
+
+	const job = await Job.findById(jobId);
 
 	if (!job) {
 		res.status(404);
 		throw new Error("Job not found");
 	}
 
+	// Trigger middleware to delete associated operations
 	await job.deleteOne();
-	res.status(200).send("Job deleted");
+
+	res.status(200).json({ message: "Job deleted" });
 });
 
 // @desc    Create a job
