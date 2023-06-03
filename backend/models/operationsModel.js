@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const operationsSchema = mongoose.Schema(
 	{
 		jobID: {
-			type: String,
-			required: [true, "Please enter job ID"],
+			type: mongoose.Schema.Types.ObjectId,
+			required: true,
 			ref: "Job",
 		},
 		operation: {

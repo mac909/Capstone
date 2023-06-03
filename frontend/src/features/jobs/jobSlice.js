@@ -138,13 +138,12 @@ export const createJob = createAsyncThunk(
 	}
 );
 
-// Update a job
 export const updateJob = createAsyncThunk(
 	"job/updateJob",
-	async (job, thunkAPI) => {
+	async ({ id, formData }, thunkAPI) => {
 		try {
 			const token = thunkAPI.getState().auth.user.token;
-			return await jobService.updateJob(job, token);
+			return await jobService.updateJob(id, formData, token);
 		} catch (error) {
 			const message =
 				(error.response &&

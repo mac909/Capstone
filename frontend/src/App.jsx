@@ -7,6 +7,7 @@ import Header from "./components/header/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Job from "./pages/jobPage/Job";
+import EditJob from "./pages/editJob/editJob";
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
 						<Route path="/job" element={<Job />} />
+						<Route path="/job/:id" element={<EditJob />} />
 					</Routes>
 				</div>
 			</Router>
