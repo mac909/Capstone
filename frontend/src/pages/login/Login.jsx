@@ -69,6 +69,7 @@ const Login = () => {
 							value={email}
 							placeholder="Enter your email"
 							onChange={(e) => onChange(e)}
+							autoComplete="off"
 						/>
 					</div>
 					<div className="form-group">
