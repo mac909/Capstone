@@ -8,6 +8,7 @@ import { getOrders, reset } from "../../features/orders/orderSlice";
 import OrderItem from "../../components/orderItem/OrderItem";
 import JobItem from "../../components/jobItem/JobItem";
 import { getJobs, resetJob } from "../../features/jobs/jobSlice";
+import Error from "../../components/errorPage/Error";
 
 const Dashboard = () => {
 	const dispatch = useDispatch();
@@ -42,6 +43,10 @@ const Dashboard = () => {
 
 	if (isLoading) {
 		return <Spinner />;
+	}
+
+	if (isError) {
+		return <Error />;
 	}
 
 	return (

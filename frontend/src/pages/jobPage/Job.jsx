@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { createJob } from "../../features/jobs/jobSlice";
+import { createJob, createOperation } from "../../features/jobs/jobSlice";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -59,6 +59,7 @@ const Job = () => {
 		e.preventDefault();
 		try {
 			dispatch(createJob(formData));
+			dispatch(createOperation(formData.operations));
 			setFormData({
 				customer: "",
 				description: "",
