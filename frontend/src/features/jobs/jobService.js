@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_URL = "/api/jobs/";
+const API_URL_OPERATIONS = "/api/operations/";
 
 // Get all jobs
 const getJobs = async (token) => {
@@ -63,12 +64,38 @@ const deleteJob = async (id, token) => {
 	return response.data;
 };
 
+// Create a new operation
+const createOperation = async (operation, token) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+
+	const response = await axios.post(API_URL_OPERATIONS, operation, config);
+	return response.data;
+};
+
+// delete an operation
+const deleteOperation = async (id, token) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+
+	const response = await axios.delete(`${API_URL_OPERATIONS}/${id}`, config);
+	return response.data;
+};
+
 const jobService = {
 	getJobs,
 	getJob,
 	createJob,
 	updateJob,
 	deleteJob,
+	createOperation,
+	deleteOperation,
 };
 
 export default jobService;

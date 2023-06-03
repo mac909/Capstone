@@ -176,5 +176,62 @@ export const deleteJob = createAsyncThunk(
 	}
 );
 
+// Create operation
+export const createOperation = createAsyncThunk(
+	"job/createOperation",
+	async (operation, thunkAPI) => {
+		try {
+			const token = thunkAPI.getState().auth.user.token;
+			return await jobService.createOperation(operation, token);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
+// Get all operations
+export const getOperations = createAsyncThunk(
+	"job/getOperations",
+	async (id, thunkAPI) => {
+		try {
+			const token = thunkAPI.getState().auth.user.token;
+			return await jobService.getOperations(id, token);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
+// Delete operation
+export const deleteOperation = createAsyncThunk(
+	"job/deleteOperation",
+	async (id, thunkAPI) => {
+		try {
+			const token = thunkAPI.getState().auth.user.token;
+			return await jobService.deleteOperation(id, token);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
 export const { resetJob } = jobSlice.actions;
 export default jobSlice.reducer;
