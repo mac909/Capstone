@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const operationsDeleteMiddleware = require("../middleware/operationsDeleteMiddleware");
 
 const jobSchema = mongoose.Schema(
 	{
@@ -41,5 +42,7 @@ const jobSchema = mongoose.Schema(
 		timestamps: true,
 	}
 );
+
+jobSchema.pre("deleteOne", { document: true }, operationsDeleteMiddleware);
 
 module.exports = mongoose.model("Job", jobSchema);

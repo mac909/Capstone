@@ -24,6 +24,7 @@ app.use(errorHandler);
 app.use("/api/users", require("./routes/userRouter"));
 app.use("/api/orders", require("./routes/orderRouter"));
 app.use("/api/jobs", require("./routes/jobRouter"));
+app.use("/api/operations", require("./routes/operationsRouter"));
 
 // Setup app listen on port
 app.listen(port, () => {
