@@ -90,7 +90,7 @@ const Register = () => {
 					</div>
 					<div className="form-group">
 						<input
-							type="text"
+							type="password"
 							className="form-control"
 							id="password"
 							name="password"
@@ -101,7 +101,7 @@ const Register = () => {
 					</div>
 					<div className="form-group">
 						<input
-							type="text"
+							type="password"
 							className="form-control"
 							id="confirmPassword"
 							name="confirmPassword"
